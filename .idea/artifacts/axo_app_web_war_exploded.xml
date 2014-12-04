@@ -1,0 +1,53 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="axo-app-web:war exploded">
+    <output-path>$PROJECT_DIR$/axo-app-web/target/gae-demo-0.0.1-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="axo-app-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.7" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
+          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.7" />
+          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.7" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.2" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.2" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.13" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.3.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.3.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.3.3" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.0.3.Final" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.1.GA" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.0.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-actuator:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-legacy:1.0.0.M2" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.9.13" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-endpoints:1.9.13" />
+          <element id="library" level="project" name="Maven: com.googlecode.objectify:objectify:5.0.2" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:14.0.1" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.4.RELEASE" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="axo-app-web/web/Web" />
+    </root>
+  </artifact>
+</component>

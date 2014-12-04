@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="axo-app-web:war">
+    <output-path>$PROJECT_DIR$/axo-app-web/target</output-path>
+    <root id="archive" name="gae-demo-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="axo-app-web:war exploded" />
+    </root>
+  </artifact>
+</component>

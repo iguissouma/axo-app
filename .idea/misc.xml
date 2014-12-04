@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="id" value="1336722564736" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="D:/total-world/misc/axonesFormatter120.xml" />
+    <option name="selectedJavaProfile" value="IdFactory" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="google-app-engine" url="file://$PROJECT_DIR$/axo-app-server" />
+    <file type="google-app-engine" url="file://$PROJECT_DIR$/axo-app-web" />
+    <file type="web" url="file://$PROJECT_DIR$/axo-app-server" />
+    <file type="web" url="file://$PROJECT_DIR$/axo-app-web" />
+  </component>
+  <component name="IdProvider" IDEtalkID="07B824A5FF304D230F42C0A8F8D13E02" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring-boot-gae/pom.xml" />
+        <option value="$PROJECT_DIR$/axo-app-web/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
+
