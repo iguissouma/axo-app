@@ -17,6 +17,8 @@
     <script src="lib/js/angular/angular-animate.js"></script>
     <script src="lib/js/angular/angular-sanitize.js"></script>
     <script src="lib/js/angular-ui/angular-ui-router.js"></script>
+    <script src="lib/js/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/js/angular/angular-resource.js"></script>
     <script src="lib/js/ionic-angular.js"></script>
 
     <!-- cordova script -->
@@ -33,22 +35,20 @@
 -->
 <body ng-app="directory" animation="slide-left-right-ios7">
 
-<!--
-  The nav bar that will be updated as we navigate between views
-  Additional attributes set its look, nav-bar animation and icons
-  Icons provided by Ionicons: http://ionicons.com/
--->
-<nav-bar type="bar-positive"
-         animation="nav-title-slide-ios7"
-         back-button-type="button-icon"
-         back-button-icon="ion-ios7-arrow-back"></nav-bar>
+<ion-nav-bar class="bar-positive nav-title-slide-ios7">
+    <!--<ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>-->
+</ion-nav-bar>
+<ion-nav-view animation="slide-left-right">
+    <div class="alert alert-danger" ng-show="error">{{error}}</div>
+</ion-nav-view>
+<ion-footer-bar class="bar-dark" ng-show="user">
+    <button class="button button-assertive" ng-click="logout()">
+        Logout
+    </button>
+</ion-footer-bar>
 
-<!--
-  The views will be rendered in the <nav-view> directive below
-  Templates are in the /templates folder (but you could also
-  have templates inline in this html file if you'd like).
--->
-<nav-view></nav-view>
 <script type="text/javascript">
     function init() {
         angular.element(document).ready(function() {

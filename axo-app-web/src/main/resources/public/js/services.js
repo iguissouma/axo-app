@@ -51,4 +51,16 @@ angular.module('directory.services', [])
 
         }
 
+    })
+
+    .factory('LoginService', function($resource) {
+        return $resource('https://axo-app.appspot.com/:action', {},
+            {
+                authenticate: {
+                    method: 'POST',
+                    params: {'action' : 'authenticate'}
+                }
+            }
+        );
     });
+

@@ -1,26 +1,67 @@
-angular.module('starter.services', [])
+angular.module('directory.services', [])
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
+    .factory('EmployeeService', function ($q) {
 
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
+        var employees;
+        // We use promises to make this api asynchronous. This is clearly not necessary when using in-memory data
+        // but it makes this service more flexible and plug-and-play. For example, you can now easily replace this
+        // service with a JSON service that gets its data from a remote server without having to changes anything
+        // in the modules invoking the data service since the api is already async.
 
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  }
-});
+        return {
+            findAll: function () {
+                var deferred = $q.defer();
+                //Async call to google service
+                gapi.client.employe.list().execute(
+                    function (resp) {
+                        if (!resp.code) {
+                            console.debug(resp);
+                            employees = resp.items;
+                            deferred.resolve(employees);
+                        }
+                    });
+                return deferred.promise;
+            },
+
+            findById: function (employeeId) {
+                var deferred = $q.defer();
+                var employee = employees[employeeId - 1];
+                deferred.resolve(employee);
+                return deferred.promise;
+            },
+
+            findByName: function (searchKey) {
+                var deferred = $q.defer();
+                var results = employees.filter(function (element) {
+                    var fullName = element.firstName + " " + element.lastName;
+                    return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+                });
+                deferred.resolve(results);
+                return deferred.promise;
+            },
+
+            findByManager: function (managerId) {
+                var deferred = $q.defer(),
+                    results = employees.filter(function (element) {
+                        return parseInt(managerId) === parseInt(element.managerId);
+                    });
+                deferred.resolve(results);
+                return deferred.promise;
+            }
+
+        }
+
+    })
+
+    .factory('LoginService', function($resource) {
+        return $resource('https://axo-app.appspot.com/:action', {},
+            {
+                authenticate: {
+
+                    method: 'POST',
+                    params: {'action' : 'authenticate'}
+                }
+            }
+        );
+    });
+

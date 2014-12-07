@@ -1,15 +1,72 @@
-angular.module('starter.controllers', [])
+angular.module('directory.controllers', [])
 
-.controller('DashCtrl', function($scope) {
-})
+    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, EmployeeService) {
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+        $scope.isBackendReady = false;
+        $window.init = function () {
+            $scope.$apply($scope.initgapi);
+        };
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+        $scope.initgapi = function () {
+            var rootApi = 'https://axo-app.appspot.com/_ah/api';
+            gapi.client.load('employe', 'v1', function () {
+                //findAllEmployees();
+                $scope.isBackendReady = true;
+            }, rootApi);
+        };
 
-.controller('AccountCtrl', function($scope) {
-});
+        $scope.data = {
+            showDelete: false
+        };
+        $scope.searchKey = "";
+
+        $scope.clearSearch = function () {
+            $scope.searchKey = "";
+            findAllEmployees();
+        };
+
+        $scope.search = function () {
+            EmployeeService.findByName($scope.searchKey).then(function (employees) {
+                $scope.employees = employees;
+            });
+        };
+
+        var findAllEmployees = function () {
+             if (gapi.client === undefined || (typeof(gapi.client.employe) === 'undefined')) {
+                $timeout(findAllEmployees, 500);
+            } else {
+                EmployeeService.findAll().then(function (employees) {
+                    $scope.employees = employees;
+                });
+            }
+        };
+
+        findAllEmployees();
+    })
+
+    .controller('EmployeeDetailCtrl', function ($scope, $stateParams, EmployeeService) {
+        EmployeeService.findById($stateParams.employeeId).then(function (employee) {
+            $scope.employee = employee;
+        });
+    })
+
+    .controller('EmployeeReportsCtrl', function ($scope, $stateParams, EmployeeService) {
+        EmployeeService.findByManager($stateParams.employeeId).then(function (employees) {
+            $scope.employees = employees;
+        });
+    })
+
+    .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, LoginService) {
+        $scope.credentials = {
+            username: '', password: ''
+        };
+        $scope.login = function() {
+            LoginService.authenticate({username: $scope.credentials.username, password: $scope.credentials.password}, function(user) {
+                $rootScope.user = user;
+                $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;
+                //$cookieStore.put('user', user);
+                $localstorage.setObject('user', user);
+                $location.path("/employees");
+            });
+        };
+    });

@@ -8,15 +8,16 @@ angular.module('directory.controllers', [])
         };
 
         $scope.initgapi = function () {
-            console.log("load_employe_lib called");
-            var rootApi = 'https://axo-directory.appspot.com/_ah/api';
+            var rootApi = 'https://axo-app.appspot.com/_ah/api';
             gapi.client.load('employe', 'v1', function () {
                 //findAllEmployees();
                 $scope.isBackendReady = true;
             }, rootApi);
         };
 
-
+        $scope.data = {
+            showDelete: false
+        };
         $scope.searchKey = "";
 
         $scope.clearSearch = function () {
@@ -53,4 +54,19 @@ angular.module('directory.controllers', [])
         EmployeeService.findByManager($stateParams.employeeId).then(function (employees) {
             $scope.employees = employees;
         });
+    })
+
+    .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, LoginService) {
+        $scope.credentials = {
+            username: '', password: ''
+        };
+        $scope.login = function() {
+            LoginService.authenticate({username: $scope.credentials.username, password: $scope.credentials.password}, function(user) {
+                $rootScope.user = user;
+                $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;
+                //$cookieStore.put('user', user);
+                $localstorage.setObject('user', user);
+                $location.path("/employees");
+            });
+        };
     });
