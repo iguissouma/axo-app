@@ -35,10 +35,10 @@
 -->
 <body ng-app="directory" animation="slide-left-right-ios7">
 
-<ion-nav-bar class="bar-positive nav-title-slide-ios7">
-    <!--<ion-nav-back-button class="button-clear">
-        <i class="ion-arrow-left-c"></i> Back
-    </ion-nav-back-button>-->
+<ion-nav-bar class="bar-positive nav-title-slide-ios7" ng-controller="NavController">
+    <ion-nav-back-button class="button-icon" ng-click="goBack()">
+        <i class="ion-arrow-left-c"></i>
+    </ion-nav-back-button>
 </ion-nav-bar>
 <ion-nav-view animation="slide-left-right">
     <div class="alert alert-danger" ng-show="error">{{error}}</div>

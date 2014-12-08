@@ -69,4 +69,19 @@ angular.module('directory.controllers', [])
                 $location.path("/employees");
             });
         };
+    }).controller('NavController', function($scope, $ionicNavBarDelegate, $state) {
+        $scope.goBack = function() {
+            if ($scope.isNative && backToNative($state)) {
+                location.href='appName-ios://back';
+            } else {
+                $ionicNavBarDelegate.back();
+            }
+        };
+
+        function backToNative($state) {
+            var entryPoints = ['stateName1', 'stateName2', 'stateName3'];
+            return entryPoints.some(function (entry) {
+                return $state.current === $state.get(entry);
+            });
+        }
     });

@@ -42,6 +42,10 @@ angular.module('directory', ['ionic','ngCookies', 'ngResource', 'directory.servi
         $urlRouterProvider.otherwise('/login');
         /* Intercept http errors */
         var interceptor = function ($rootScope, $q, $location) {
+            // set native app indicator
+            if (document.location.toString().indexOf('android') > -1) {
+                $rootScope.isNative = true;
+            }
             function success(response) {
                 return response;
             }
