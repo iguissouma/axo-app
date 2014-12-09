@@ -1,6 +1,13 @@
 angular.module('directory.controllers', [])
 
-    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, EmployeeService) {
+    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, $ionicLoading, EmployeeService) {
+        $scope.loadingIndicator = $ionicLoading.show({
+            content: 'Loading Data',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 200,
+            showDelay: 500
+        });
 
         $scope.isBackendReady = false;
         $window.init = function () {
@@ -37,6 +44,7 @@ angular.module('directory.controllers', [])
             } else {
                 EmployeeService.findAll().then(function (employees) {
                     $scope.employees = employees;
+                    $scope.loadingIndicator.hide();
                 });
             }
         };
