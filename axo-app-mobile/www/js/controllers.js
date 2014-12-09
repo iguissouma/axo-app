@@ -57,6 +57,7 @@ angular.module('directory.controllers', [])
     })
 
     .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, LoginService) {
+        $rootScope.user = null;
         $scope.credentials = {
             username: '', password: ''
         };
