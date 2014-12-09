@@ -38,13 +38,21 @@ angular.module('directory.controllers', [])
             });
         };
 
+        $scope.filterFunction = function(element) {
+            var abbreviation = element.firstName.substring(0, 1)+element.lastName.substring(0,2);
+            var fullName = element.firstName + " " + element.lastName;
+            var fullNameCondition = fullName.toLowerCase().indexOf($scope.searchKey.toLowerCase()) > -1;
+            var abbreviationCondition = abbreviation.toLowerCase() == $scope.searchKey && $scope.searchKey.length == 3;
+            return fullNameCondition || abbreviationCondition;
+        };
+
         var findAllEmployees = function () {
              if (gapi.client === undefined || (typeof(gapi.client.employe) === 'undefined')) {
                 $timeout(findAllEmployees, 500);
             } else {
                 EmployeeService.findAll().then(function (employees) {
                     $scope.employees = employees;
-                    $scope.loadingIndicator.hide();
+                    $ionicLoading.hide();
                 });
             }
         };
