@@ -44,7 +44,7 @@ angular.module('directory.controllers', [])
             } else {
                 EmployeeService.findAll().then(function (employees) {
                     $scope.employees = employees;
-                    $scope.loadingIndicator.hide();
+                    $ionicLoading.hide();
                 });
             }
         };
