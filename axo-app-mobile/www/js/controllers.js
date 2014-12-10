@@ -68,7 +68,7 @@ angular.module('directory.controllers', [])
 
     .controller('EmployeeReportsCtrl', function ($scope, $stateParams, EmployeeService) {
         EmployeeService.findByManager($stateParams.employeeId).then(function (employees) {
-            $scope.employees = employees;
+            $scope.employee = employees;
         });
     })
 

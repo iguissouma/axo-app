@@ -1,14 +1,12 @@
 <ion-view title="{{ employee.firstName }} {{ employee.lastName }}">
   <ion-content has-header="true" padding="true">
-
-      <div class="details">
-          <img src="https://axo-directory.appspot.com/pics/{{employee.pic }}" width="100" height="100"/>
-          <h4>{{ employee.firstName }} {{ employee.lastName }}</h4>
-          <p>{{ employee.title }}<br/>
-          {{ employee.city }}</p>
-      </div>
-
       <div class="list card">
+          <div class="item item-avatar">
+              <img src="https://axo-directory.appspot.com/pics/{{employee.pic }}" width="100" height="100"/>
+              <h4>{{ employee.firstName }} {{ employee.lastName }}</h4>
+              <p>{{ employee.title }}<br/>
+                  {{ employee.city }}</p>
+          </div>
           <a class="item item-icon-left" href="#/employee/{{employee.managerId}}" ng-if="employee.managerId > 0"><i class="icon ion-ios7-person"></i>View Manager<p>{{employee.managerName}}</p></a>
           <a class="item item-icon-left" href="#/employee/{{employee.id}}/reports" ng-if="employee.reports > 0"><i class="icon ion-person-stalker"></i>View Direct Reports<p>{{employee.reports}}</p></a>
           <a class="item item-icon-left" href="tel:{{employee.officePhone}}"><i class="icon ion-ios7-telephone"></i>Call Office<p>{{employee.officePhone}}</p></a>
