@@ -1,13 +1,18 @@
 <ion-view title="Direct Reports">
 
-    <ion-content has-header="true">
-        <ion-list>
-            <ion-item ng-repeat="employee in employees" type="item-text-wrap" href="#/employee/{{employee.id}}">
-                <h3>{{employee.firstName}} {{employee.lastName}}</h3>
+    <ion-content has-header="true" padding="true">
+        <div class="list card">
+            <div class="item item-avatar">
+                <img src="pics/{{employee.pic }}"/>
+                <h2>{{employee.firstName}} {{employee.lastName}}</h2>
                 <p>{{employee.title}}</p>
-            </ion-item>
-            </ion-item>
-        </ion-list>
+            </div>
+            <a ng-repeat="report in employee.reports" class="item item-avatar item-icon-left" href="#/employee/{{report.id}}">
+                <img src="pics/{{report.pic }}"/>
+                {{report.firstName}} {{report.lastName}}
+                <p>{{report.title}}</p>
+            </a>
+        </div>
     </ion-content>
 
 </ion-view>

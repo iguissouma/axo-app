@@ -41,11 +41,27 @@ angular.module('directory.services', [])
             },
 
             findByManager: function (managerId) {
-                var deferred = $q.defer(),
-                    results = employees.filter(function (element) {
-                        return parseInt(managerId) === parseInt(element.managerId);
-                    });
-                deferred.resolve(results);
+                var deferred = $q.defer();
+                var id = parseInt(managerId),
+                    response,
+                    reports = [],
+                    employee;
+                response = {
+                    id: id,
+                    firstName: employees[id-1].firstName,
+                    lastName: employees[id-1].lastName,
+                    title: employees[id-1].title,
+                    pic: employees[id-1].pic
+                };
+                for (var i=0; i<employees.length; i++) {
+                    employee = employees[i];
+                    if (parseInt(employee.managerId) === id) {
+
+                        reports.push({id: employee.id, firstName: employee.firstName, lastName: employee.lastName, title: employee.title, pic: employee.pic});
+                    }
+                }
+                response.reports = reports;
+                deferred.resolve(response);
                 return deferred.promise;
             }
 
