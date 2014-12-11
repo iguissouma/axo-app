@@ -1,6 +1,8 @@
 angular.module('directory.controllers', [])
 
-    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, $ionicLoading, EmployeeService) {
+    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, $ionicLoading,$ionicViewService, EmployeeService) {
+        // This a temporary solution to solve an issue where the back button is displayed when it should not be.
+        $ionicViewService.clearHistory();
         $scope.loadingIndicator = $ionicLoading.show({
             content: 'Loading Data',
             animation: 'fade-in',
@@ -72,7 +74,9 @@ angular.module('directory.controllers', [])
         });
     })
 
-    .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, LoginService) {
+    .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, $ionicViewService, LoginService) {
+        // This a temporary solution to solve an issue where the back button is displayed when it should not be.
+        $ionicViewService.clearHistory();
         $rootScope.user = null;
         $scope.credentials = {
             username: '', password: ''
