@@ -73,7 +73,7 @@ angular.module('directory.services', [])
         var url = 'https://axo-app.appspot.com/';
         var res = ':action';
         var isAndroid = document.location.toString().indexOf('android') > -1;
-        var isAppSpot = document.location.toString().indexOf('android') > -1;
+        var isAppSpot = document.location.toString().indexOf('appspot') > -1;
         if (isAndroid || !isAppSpot) {
             res = url + res;
         }
