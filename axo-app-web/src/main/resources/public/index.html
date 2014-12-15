@@ -43,12 +43,11 @@
 <ion-nav-view animation="slide-left-right">
     <div class="alert alert-danger" ng-show="error">{{error}}</div>
 </ion-nav-view>
-<ion-footer-bar class="bar-dark" ng-show="user">
-    <button class="button button-assertive" ng-click="logout()">
-        Logout
-    </button>
+<ion-footer-bar align-title="right" class="bar-positive" ng-show="user">
+    <div class="buttons right-buttons" ng-click="logout()">
+        <button class="button">Logout</button>
+    </div>
 </ion-footer-bar>
-
 <script type="text/javascript">
     function init() {
         angular.element(document).ready(function() {

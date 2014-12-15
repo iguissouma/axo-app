@@ -72,7 +72,9 @@ angular.module('directory.services', [])
     .factory('LoginService', function($resource) {
         var url = 'https://axo-app.appspot.com/';
         var res = ':action';
-        if (document.location.toString().indexOf('android') > -1) {
+        var isAndroid = document.location.toString().indexOf('android') > -1;
+        var isAppSpot = document.location.toString().indexOf('android') > -1;
+        if (isAndroid || !isAppSpot) {
             res = url + res;
         }
 

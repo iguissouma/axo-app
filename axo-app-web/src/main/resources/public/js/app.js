@@ -33,6 +33,12 @@ angular.module('directory', ['ionic','ngCookies', 'ngResource', 'directory.servi
                 controller: 'EmployeeDetailCtrl'
             })
 
+            .state('employee-create', {
+                url: '/employees/create',
+                templateUrl: 'templates/employee-create.html',
+                controller: 'EmployeeCreateCtrl'
+            })
+
             .state('employee-reports', {
                 url: '/employee/:employeeId/reports',
                 templateUrl: 'templates/employee-reports.html',

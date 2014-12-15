@@ -4,9 +4,9 @@ angular.module('directory.controllers', [])
         // This a temporary solution to solve an issue where the back button is displayed when it should not be.
         $ionicViewService.clearHistory();
         $scope.loadingIndicator = $ionicLoading.show({
-            content: 'Loading Data',
+            template: '<img class="my-custom-class" ng-src="img/squares.gif"/>',
             animation: 'fade-in',
-            showBackdrop: false,
+            noBackdrop: true,
             maxWidth: 200,
             showDelay: 500
         });
@@ -66,6 +66,15 @@ angular.module('directory.controllers', [])
         EmployeeService.findById($stateParams.employeeId).then(function (employee) {
             $scope.employee = employee;
         });
+    })
+
+    .controller('EmployeeCreateCtrl', function ($scope, $location,$stateParams, EmployeeService) {
+        //$scope.newsEntry = new NewsService();
+        $scope.save = function() {
+            //$scope.newsEntry.$save(function() {
+                $location.path('/employees');
+            //});
+        };
     })
 
     .controller('EmployeeReportsCtrl', function ($scope, $stateParams, EmployeeService) {
