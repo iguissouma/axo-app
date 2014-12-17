@@ -59,6 +59,14 @@ angular.module('directory.controllers', [])
             }
         };
 
+        $scope.doRefresh = function() {
+            EmployeeService.findAll().then(function (employees) {
+                $scope.employees = employees;
+                // Stop the ion-refresher from spinning
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        };
+
         findAllEmployees();
     })
 

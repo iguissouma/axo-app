@@ -20,6 +20,10 @@
     </div>
 
     <ion-content class="has-header has-subheader">
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
         <ion-list can-swipe="hasRole('ROLE_ADMIN')" show-delete="data.showDelete">
             <ion-item ng-repeat="employee in employees | filter: filterFunction" type="item-text-wrap" class="item-avatar" href="#/employee/{{employee.id}}">
                 <img src="pics/{{employee.pic}}"/>
