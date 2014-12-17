@@ -73,7 +73,18 @@ angular.module('directory', ['ionic','ngCookies', 'ngResource', 'directory.servi
         };
         $httpProvider.responseInterceptors.push(interceptor);
         $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-    }).run(function($rootScope, $http, $location, $cookieStore,$window,$localstorage, LoginService) {
+    }).run(function($rootScope, $http, $location, $cookieStore,$window,$localstorage,$ionicPlatform, LoginService) {
+        $ionicPlatform.ready(function () {
+// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+// for form inputs)
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            }
+            if (window.StatusBar) {
+// org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+        });
         /* Reset error when a new view is loaded */
         $rootScope.$on('$viewContentLoaded', function() {
             delete $rootScope.error;
