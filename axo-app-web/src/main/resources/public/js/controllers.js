@@ -42,10 +42,12 @@ angular.module('directory.controllers', [])
 
         $scope.filterFunction = function(element) {
             var abbreviation = element.firstName.substring(0, 1)+element.lastName.substring(0,2);
+            var identity = element.firstName.substring(0, 1)+element.lastName;
             var fullName = element.firstName + " " + element.lastName;
             var fullNameCondition = fullName.toLowerCase().indexOf($scope.searchKey.toLowerCase()) > -1;
+            var identityCondition = identity.toLowerCase().indexOf($scope.searchKey.toLowerCase()) > -1;
             var abbreviationCondition = abbreviation.toLowerCase() == $scope.searchKey && $scope.searchKey.length == 3;
-            return fullNameCondition || abbreviationCondition;
+            return fullNameCondition || abbreviationCondition || identityCondition;
         };
 
         var findAllEmployees = function () {
