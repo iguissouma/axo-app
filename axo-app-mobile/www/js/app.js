@@ -71,7 +71,7 @@ angular.module('directory', ['ionic','ngCookies', 'ngResource', 'directory.servi
                 return promise.then(success, error);
             };
         };
-        $httpProvider.responseInterceptors.push(interceptor);
+        $httpProvider.interceptors.push(interceptor);
         $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
     }).run(function($rootScope, $http, $location, $cookieStore,$window,$localstorage,$ionicPlatform, LoginService) {
         $ionicPlatform.ready(function () {
