@@ -46,11 +46,6 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:jquery:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:angularjs:1.2.23" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:ionic:1.0.0-beta.9" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:angular-ui:0.4.0-1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.1.0.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.1.0.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.1.0.BUILD-SNAPSHOT" level="project" />

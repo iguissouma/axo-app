@@ -69,22 +69,44 @@ angular.module('directory.services', [])
 
     })
 
-    .factory('LoginService', function($resource) {
-        var url = 'https://axo-app.appspot.com/';
-        var res = ':action';
-        var isAndroid = document.location.toString().indexOf('android') > -1;
-        var isAppSpot = document.location.toString().indexOf('appspot') > -1;
-        if (isAndroid || !isAppSpot) {
-            res = url + res;
-        }
 
-        return $resource(res, {},
-            {
-                authenticate: {
-                    method: 'POST',
-                    params: {'action' : 'authenticate'}
+    .service('LoginService', function ($q, $http) {
+        return {
+            loginUser: function (name, pw) {
+                var url = 'https://axo-app.appspot.com';
+                var res = '/authenticate';
+                var isAndroid = document.location.toString().indexOf('android') > -1;
+                var isAppSpot = document.location.toString().indexOf('appspot') > -1;
+                if (isAndroid || !isAppSpot) {
+                    res = url + res;
                 }
+
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                console.log('log with:' + name + '/' + pw);
+                // Simple POST request example (passing data) :
+                $http.post(res, {username: name, password: pw}).
+                    success(function (data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        deferred.resolve(data);
+                    }).
+                    error(function (data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        deferred.reject('Wrong credentials.');
+
+                    });
+                promise.success = function (fn) {
+                    promise.then(fn);
+                    return promise;
+                }
+                promise.error = function (fn) {
+                    promise.then(null, fn);
+                    return promise;
+                }
+                return promise;
             }
-        );
+        }
     });
 

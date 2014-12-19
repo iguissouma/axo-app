@@ -93,35 +93,27 @@ angular.module('directory.controllers', [])
         });
     })
 
-    .controller( 'LoginCtrl', function($scope, $rootScope, $location, $http, $cookieStore,$window,$localstorage, $ionicHistory, LoginService) {
+    .controller('LoginCtrl', function ($scope, $http, LoginService, $ionicPopup, $state, $ionicHistory, $rootScope, $localstorage) {
+        $scope.data = {};
         // This a temporary solution to solve an issue where the back button is displayed when it should not be.
         $ionicHistory.clearHistory();
         $rootScope.user = null;
         $scope.credentials = {
             username: '', password: ''
         };
-        $scope.login = function() {
-            LoginService.authenticate({username: $scope.credentials.username, password: $scope.credentials.password}, function(user) {
+        $scope.login = function () {
+            LoginService.loginUser($scope.credentials.username, $scope.credentials.password).success(function (user) {
                 $rootScope.user = user;
-                $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;
+                $http.defaults.headers.common[xAuthTokenHeaderName] = user.token;
                 //$cookieStore.put('user', user);
                 $localstorage.setObject('user', user);
-                $location.path("/employees");
-            });
-        };
-    }).controller('NavController', function($scope, $ionicNavBarDelegate, $state) {
-        $scope.goBack = function() {
-            if ($scope.isNative && backToNative($state)) {
-                location.href='appName-ios://back';
-            } else {
-                $ionicNavBarDelegate.back();
-            }
-        };
-
-        function backToNative($state) {
-            var entryPoints = ['stateName1', 'stateName2', 'stateName3'];
-            return entryPoints.some(function (entry) {
-                return $state.current === $state.get(entry);
+                //$location.path("/employees");
+                $state.go('employee-index');
+            }).error(function (data) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login failed!',
+                    template: 'Please check your credentials!'
+                });
             });
         }
     });

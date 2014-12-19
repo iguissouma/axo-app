@@ -25,3 +25,16 @@
     padding-left: 130px;
     padding-top: 40px;
 }
+.loading-container .loading {
+    background-color : transparent;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+.popup-body {
+    overflow: hidden;
+    padding: 10px;
+}
