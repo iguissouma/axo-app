@@ -69,6 +69,12 @@ angular.module('directory.controllers', [])
             });
         };
 
+        $scope.deleteEntry = function(index, employeeId) {
+            EmployeeService.delete(employeeId).then(function () {
+                $scope.employees.splice(index, 1);
+            });
+        };
+
         findAllEmployees();
     })
 
@@ -80,10 +86,14 @@ angular.module('directory.controllers', [])
 
     .controller('EmployeeCreateCtrl', function ($scope, $location,$stateParams, EmployeeService) {
         //$scope.newsEntry = new NewsService();
+        $scope.employeeToCreate = {
+            firstName: '', lastName: '',email:''
+        };
         $scope.save = function() {
-            //$scope.newsEntry.$save(function() {
+            console.log('employee model' + $scope.employeeToCreate);
+            EmployeeService.createEmployee($scope.employeeToCreate).then(function () {
                 $location.path('/employees');
-            //});
+            });
         };
     })
 

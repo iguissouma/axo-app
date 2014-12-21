@@ -23,6 +23,21 @@ angular.module('directory.services', [])
                 return deferred.promise;
             },
 
+            createEmployee: function (employee) {
+                console.log('employee=' + employee);
+                var deferred = $q.defer();
+                //Async call to google service
+                gapi.client.employe.create(employee).execute(
+                    function (resp) {
+                        if (!resp.code) {
+                            console.debug(resp);
+                            //employees = resp.items;
+                            deferred.resolve('employee created');
+                        }
+                    });
+                return deferred.promise;
+            },
+
             findById: function (employeeId) {
                 var deferred = $q.defer();
                 var employee = employees[employeeId - 1];
@@ -30,7 +45,22 @@ angular.module('directory.services', [])
                 return deferred.promise;
             },
 
-            findByName: function (searchKey) {
+            delete: function (employeeId) {
+                console.log('employee id to delete=' + employeeId);
+                var deferred = $q.defer();
+                //Async call to google service
+                gapi.client.employe.remove({id:employeeId}).execute(
+                    function (resp) {
+                        if (!resp.code) {
+                            console.debug(resp);
+                            //employees = resp.items;
+                            deferred.resolve('employee deleted');
+                        }
+                    });
+                return deferred.promise;
+            },
+
+            /*findByName: function (searchKey) {
                 var deferred = $q.defer();
                 var results = employees.filter(function (element) {
                     var fullName = element.firstName + " " + element.lastName;
@@ -38,7 +68,7 @@ angular.module('directory.services', [])
                 });
                 deferred.resolve(results);
                 return deferred.promise;
-            },
+            },*/
 
             findByManager: function (managerId) {
                 var deferred = $q.defer();
@@ -77,8 +107,13 @@ angular.module('directory.services', [])
                 var res = '/authenticate';
                 var isAndroid = document.location.toString().indexOf('android') > -1;
                 var isAppSpot = document.location.toString().indexOf('appspot') > -1;
+                var isDev = document.location.toString().indexOf('localhost') > -1
+                    ||document.location.toString().indexOf('192') > -1;
                 if (isAndroid || !isAppSpot) {
                     res = url + res;
+                }
+                if (isDev) {
+                    res = 'http://localhost:8080/authenticate';
                 }
 
                 var deferred = $q.defer();
