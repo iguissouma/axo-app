@@ -111,19 +111,21 @@ angular.module('directory.controllers', [])
         $scope.credentials = {
             username: '', password: ''
         };
-        $scope.login = function () {
-            LoginService.loginUser($scope.credentials.username, $scope.credentials.password).success(function (user) {
-                $rootScope.user = user;
-                $http.defaults.headers.common[xAuthTokenHeaderName] = user.token;
-                //$cookieStore.put('user', user);
-                $localstorage.setObject('user', user);
-                //$location.path("/employees");
-                $state.go('employee-index');
-            }).error(function (data) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Login failed!',
-                    template: 'Please check your credentials!'
+        $scope.login = function (form) {
+            if (form.$valid) {
+                LoginService.loginUser($scope.credentials.username, $scope.credentials.password).success(function (user) {
+                    $rootScope.user = user;
+                    $http.defaults.headers.common[xAuthTokenHeaderName] = user.token;
+                    //$cookieStore.put('user', user);
+                    $localstorage.setObject('user', user);
+                    //$location.path("/employees");
+                    $state.go('employee-index');
+                }).error(function (data) {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Login failed!',
+                        template: 'Please check your credentials!'
+                    });
                 });
-            });
+            }
         }
     });

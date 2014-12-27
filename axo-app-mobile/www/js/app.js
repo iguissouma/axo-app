@@ -4,7 +4,7 @@
 // 'directory.services' is found in services.js
 // 'directory.controllers' is found in controllers.js
 var xAuthTokenHeaderName = 'x-auth-token';
-angular.module('directory', ['ionic','ngCookies', 'ngResource', 'directory.services', 'directory.controllers'])
+angular.module('directory', ['ionic', 'ngMessages', 'ngCookies', 'ngResource', 'directory.services', 'directory.controllers'])
 
 
     .config(function ($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {

@@ -112,7 +112,6 @@ angular.module('directory.controllers', [])
             username: '', password: ''
         };
         $scope.login = function (form) {
-            console.log('form:'+form);
             if (form.$valid) {
                 LoginService.loginUser($scope.credentials.username, $scope.credentials.password).success(function (user) {
                     $rootScope.user = user;
