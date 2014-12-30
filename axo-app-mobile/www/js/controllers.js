@@ -1,6 +1,6 @@
 angular.module('directory.controllers', [])
 
-    .controller('EmployeeIndexCtrl', function ($scope, $window,$timeout, $ionicLoading,$ionicHistory, EmployeeService) {
+    .controller('EmployeeIndexCtrl', function ($scope,$ionicActionSheet, $window,$timeout, $ionicLoading,$ionicHistory, EmployeeService) {
         // This a temporary solution to solve an issue where the back button is displayed when it should not be.
         $ionicHistory.clearHistory();
         $scope.loadingIndicator = $ionicLoading.show({
@@ -70,9 +70,26 @@ angular.module('directory.controllers', [])
         };
 
         $scope.deleteEntry = function(index, employeeId) {
-            EmployeeService.delete(employeeId).then(function () {
-                $scope.employees.splice(index, 1);
+            // show ionic actionSheet to confirm delete operation
+            // show() returns a function to hide the actionSheet
+            var hideSheet = $ionicActionSheet.show({
+                titleText: 'Are you sure that you\'d like to delete this?',
+                cancelText: 'Cancel',
+                destructiveText: 'Delete',
+                cancel: function () {
+                    // if the user cancel's deletion, hide the list item's delete button
+                    $ionicListDelegate.closeOptionButtons();
+                },
+                destructiveButtonClicked: function () {
+                    EmployeeService.delete(employeeId).then(function () {
+                        $scope.employees.splice(index, 1);
+                        // hide the confirmation dialog
+                        hideSheet();
+                    });
+
+                }
             });
+
         };
 
         findAllEmployees();
